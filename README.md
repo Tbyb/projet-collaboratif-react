@@ -1,84 +1,75 @@
-# Citations Inspirantes
+# Site Collaboratif React 🚀
 
-Application React dédiée à l'affichage et la gestion de citations inspirantes.
+Un site web moderne développé en React avec 4 sections interactives utilisant l'API DummyJSON.
 
-## Fonctionnalités
+## 📋 Description
 
-### Principales
-- **Récupération de citations** depuis l'API DummyJSON
-- **Citation aléatoire** du moment avec possibilité de renouvellement
-- **Affichage en grille** avec système de pagination
-- **Citations cliquables** avec modal détaillée
-- **Copie de citations** dans le presse-papiers
-- **Partage de citations** (Web Share API avec fallback)
+Projet collaboratif étudiant développé par une équipe de 3 personnes :
+- **Accueil & Produits** : Interface d'accueil et catalogue de produits avec modal
+- **Citations** : Collection de citations inspirantes (Ndiawo)
+- **Articles** : Articles intéressants (Alpha)
 
-### Statistiques
-- Nombre total de citations
-- Page actuelle et total des pages
-- Nombre d'auteurs uniques
-
-### Interface
-- Design moderne et élégant
-- Interface responsive (mobile, tablette, desktop)
-- Animations fluides et effets de hover
-- Thème coloré avec gradients
-
-## Technologies
-
-- **React** 18.2.0
-- **CSS3** avec animations
-- **API DummyJSON** pour les données
-- **Web Share API** pour le partage
-
-## Installation et lancement
+## ⚡ Démarrage rapide
 
 ```bash
-# Installer les dépendances
+# Installation des dépendances
 npm install
 
-# Lancer l'application en mode développement
+# Lancement en mode développement
 npm start
-
-# Construire pour la production
-npm run build
 ```
 
-L'application sera accessible sur `http://localhost:3000`
+Le site sera accessible sur `http://localhost:3000`
 
-## Structure
+### Résolution problème PowerShell (Windows)
+```powershell
+# Si erreur de politique d'exécution
+powershell -ExecutionPolicy Bypass -Command "npm start"
+```
+
+## 🛠️ Technologies
+
+- **React** - Framework JavaScript
+- **CSS3** - Styling moderne avec animations
+- **DummyJSON API** - Données de test
+
+## 📁 Structure
 
 ```
 src/
-├── components/
-│   ├── Citations.js      # Composant principal
-│   └── Citations.css     # Styles dédiés
-├── App.js               # Point d'entrée
-└── index.js            # Rendu React
+├── components/     # Tous les composants React
+├── styles/         # Tous les fichiers CSS
+├── App.js         # Composant principal
+└── index.js       # Point d'entrée
 ```
 
-## API Utilisée
+## ✨ Fonctionnalités
 
-- **Base URL**: https://dummyjson.com
-- **Endpoints**:
-  - `/quotes?limit=0` - Toutes les citations
-  - `/quotes/random` - Citation aléatoire
+- ✅ Navigation par onglets
+- ✅ Catalogue de produits avec détails
+- ✅ Éléments cliquables et interactifs
+- ✅ Design responsive
+- ✅ Récupération de données API
 
-## Responsive Design
+## 🌐 API Utilisée
 
-L'application s'adapte automatiquement à tous les écrans :
-- **Desktop**: Grille multi-colonnes
-- **Tablette**: Grille adaptée
-- **Mobile**: Colonne unique optimisée
+- **Produits** : `https://dummyjson.com/products`
+- **Citations** : `https://dummyjson.com/quotes`
+- **Articles** : `https://dummyjson.com/posts`
 
-## Fonctionnalités avancées
+## 👥 Équipe
 
-- **Gestion d'état** complète (loading, error, success)
-- **Pagination intelligente** avec ellipses
-- **Smooth scrolling** lors du changement de page
-- **Notifications** de feedback utilisateur
-- **Modal overlay** avec animations
-- **Copie automatique** avec confirmation visuelle
+- **Boyet** - Accueil & Produits ✅
+- **Ndiawo** - Citations 🚧
+- **Alpha** - Articles 🚧
+
+## 🚀 Scripts Disponibles
+
+- `npm start` - Serveur de développement
+- `npm build` - Build de production
+- `npm test` - Tests
 
 ---
 
-*Développé dans le cadre d'un projet collaboratif React*
+*Projet développé dans le cadre du Stage TD - L2GLAR*
+
