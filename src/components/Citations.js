@@ -156,8 +156,7 @@ const Citations = () => {
       )}
 
       {/* Statistiques */}
-      <div className="stats-section">
-        <div className="stat-card">
+      <div className="stats-section">        <div className="stat-card">
           <span className="stat-number">{citations.length}</span>
           <span className="stat-label">Citations disponibles</span>
         </div>
@@ -168,10 +167,6 @@ const Citations = () => {
         <div className="stat-card">
           <span className="stat-number">{totalPages}</span>
           <span className="stat-label">Total des pages</span>
-        </div>
-        <div className="stat-card">
-          <span className="stat-number">{new Set(citations.map(c => c.author)).size}</span>
-          <span className="stat-label">Auteurs uniques</span>
         </div>
       </div>
 
