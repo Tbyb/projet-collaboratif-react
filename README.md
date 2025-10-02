@@ -1,10 +1,10 @@
-# 📖 Citations Inspirantes
+# Citations Inspirantes
 
 Application React dédiée à l'affichage et la gestion de citations inspirantes.
 
-## ✨ Fonctionnalités
+## Fonctionnalités
 
-### 🎯 Principales
+### Principales
 - **Récupération de citations** depuis l'API DummyJSON
 - **Citation aléatoire** du moment avec possibilité de renouvellement
 - **Affichage en grille** avec système de pagination
@@ -12,25 +12,25 @@ Application React dédiée à l'affichage et la gestion de citations inspirantes
 - **Copie de citations** dans le presse-papiers
 - **Partage de citations** (Web Share API avec fallback)
 
-### 📊 Statistiques
+### Statistiques
 - Nombre total de citations
 - Page actuelle et total des pages
 - Nombre d'auteurs uniques
 
-### 🎨 Interface
+### Interface
 - Design moderne et élégant
 - Interface responsive (mobile, tablette, desktop)
 - Animations fluides et effets de hover
 - Thème coloré avec gradients
 
-## 🛠️ Technologies
+## Technologies
 
 - **React** 18.2.0
 - **CSS3** avec animations
 - **API DummyJSON** pour les données
 - **Web Share API** pour le partage
 
-## 🚀 Installation et lancement
+## Installation et lancement
 
 ```bash
 # Installer les dépendances
@@ -45,7 +45,7 @@ npm run build
 
 L'application sera accessible sur `http://localhost:3000`
 
-## 📁 Structure
+## Structure
 
 ```
 src/
@@ -56,21 +56,21 @@ src/
 └── index.js            # Rendu React
 ```
 
-## 🎯 API Utilisée
+## API Utilisée
 
 - **Base URL**: https://dummyjson.com
 - **Endpoints**:
   - `/quotes?limit=0` - Toutes les citations
   - `/quotes/random` - Citation aléatoire
 
-## 📱 Responsive Design
+## Responsive Design
 
 L'application s'adapte automatiquement à tous les écrans :
 - **Desktop**: Grille multi-colonnes
 - **Tablette**: Grille adaptée
 - **Mobile**: Colonne unique optimisée
 
-## ✨ Fonctionnalités avancées
+## Fonctionnalités avancées
 
 - **Gestion d'état** complète (loading, error, success)
 - **Pagination intelligente** avec ellipses

@@ -72,15 +72,14 @@ const Citations = () => {
   const handleNewRandomQuote = () => {
     fetchRandomQuote();
   };
-
   // Fonction améliorée pour copier une citation
   const handleCopyQuote = async (quote, author) => {
     try {
       await navigator.clipboard.writeText(`"${quote}" - ${author}`);
-      setCopyMessage('✅ Citation copiée dans le presse-papiers !');
+      setCopyMessage('Citation copiée dans le presse-papiers !');
       setTimeout(() => setCopyMessage(''), 3000);
     } catch (err) {
-      setCopyMessage('❌ Erreur lors de la copie');
+      setCopyMessage('Erreur lors de la copie');
       setTimeout(() => setCopyMessage(''), 3000);
     }
   };
@@ -114,24 +113,22 @@ const Citations = () => {
       </div>
     );
   }
-
   if (error) {
     return (
       <div className="citations-container">
         <div className="error">
-          <h2>❌ Erreur</h2>
+          <h2>Erreur</h2>
           <p>{error}</p>
           <button onClick={fetchQuotes} className="retry-btn">
-            🔄 Réessayer
+            Réessayer
           </button>
         </div>
       </div>
     );
   }
-
   return (
     <div className="citations-container">
-      <h1 className="page-title">📖 Citations Inspirantes</h1>
+      <h1 className="page-title">Citations Inspirantes</h1>
       <p className="page-subtitle">
         Découvrez une collection de citations motivantes et inspirantes de grands penseurs. 
         Cliquez sur une citation pour la voir en détail et la partager.
@@ -140,19 +137,18 @@ const Citations = () => {
       {/* Citation aléatoire du jour */}
       {randomQuote && (
         <div className="random-quote-section">
-          <h2>💫 Citation du moment</h2>
+          <h2>Citation du moment</h2>
           <div className="random-quote-card">
             <blockquote>"{randomQuote.quote}"</blockquote>
-            <cite>— {randomQuote.author}</cite>
-            <div className="random-quote-actions">
+            <cite>— {randomQuote.author}</cite>            <div className="random-quote-actions">
               <button onClick={handleNewRandomQuote} className="new-quote-btn">
-                🎲 Nouvelle citation
+                Nouvelle citation
               </button>
               <button 
                 onClick={() => handleShareQuote(randomQuote.quote, randomQuote.author)} 
                 className="share-quote-btn"
               >
-                📤 Partager
+                Partager
               </button>
             </div>
           </div>
@@ -190,10 +186,9 @@ const Citations = () => {
             <div className="quote-content">
               <blockquote>"{citation.quote}"</blockquote>
               <cite>— {citation.author}</cite>
-            </div>
-            <div className="quote-footer">
+            </div>            <div className="quote-footer">
               <span className="quote-id">#{citation.id}</span>
-              <span className="click-hint">👆 Cliquer pour détails</span>
+              <span className="click-hint">Cliquer pour détails</span>
             </div>
           </div>
         ))}
@@ -267,19 +262,18 @@ const Citations = () => {
             <div className="modal-quote">
               <h3>Citation #{selectedCitation.id}</h3>
               <blockquote>"{selectedCitation.quote}"</blockquote>
-              <cite>— {selectedCitation.author}</cite>
-              <div className="modal-actions">
+              <cite>— {selectedCitation.author}</cite>              <div className="modal-actions">
                 <button
                   onClick={() => handleCopyQuote(selectedCitation.quote, selectedCitation.author)}
                   className="copy-btn"
                 >
-                  📋 Copier
+                  Copier
                 </button>
                 <button
                   onClick={() => handleShareQuote(selectedCitation.quote, selectedCitation.author)}
                   className="share-btn"
                 >
-                  📤 Partager
+                  Partager
                 </button>
               </div>
               {copyMessage && <div className="copy-message">{copyMessage}</div>}
