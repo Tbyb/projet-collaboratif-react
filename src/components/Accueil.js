@@ -16,11 +16,6 @@ const Accueil = ({ setActiveTab }) => {
             <button className="btn-secondary" onClick={() => setActiveTab && setActiveTab('articles')}>Lire les Articles</button>
           </div>
         </div>
-        <div className="hero-image">
-          <div className="placeholder-image">
-            <span>🚀</span>
-          </div>
-        </div>
       </div>
 
       <div className="features-section">
@@ -42,23 +37,6 @@ const Accueil = ({ setActiveTab }) => {
             <div className="feature-icon">📰</div>
             <h3>Articles</h3>
             <p>Lisez des articles intéressants et informatifs sur une variété de sujets passionnants.</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="stats-section">
-        <div className="stats-grid">
-          <div className="stat-item">
-            <div className="stat-number">100+</div>
-            <div className="stat-label">Produits</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-number">50+</div>
-            <div className="stat-label">Citations</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-number">30+</div>
-            <div className="stat-label">Articles</div>
           </div>
         </div>
       </div>
