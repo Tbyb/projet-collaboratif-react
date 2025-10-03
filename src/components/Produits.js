@@ -3,9 +3,13 @@ import '../styles/Produits.css';
 
 const Produits = () => {
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     fetchProducts();
@@ -14,12 +18,17 @@ const Produits = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await fetch('https://dummyjson.com/products?limit=20');
+      const response = await fetch('https://dummyjson.com/products?limit=50');
       if (!response.ok) {
         throw new Error('Erreur lors du chargement des produits');
       }
       const data = await response.json();
       setProducts(data.products);
+      setFilteredProducts(data.products);
+      
+      // Extraire les catégories uniques
+      const uniqueCategories = [...new Set(data.products.map(product => product.category))];
+      setCategories(uniqueCategories);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -40,6 +49,46 @@ const Produits = () => {
       style: 'currency',
       currency: 'EUR'
     }).format(price);
+  };
+
+  // Fonction de filtrage et recherche
+  const filterProducts = () => {
+    let filtered = products;
+
+    // Filtrer par recherche
+    if (searchTerm) {
+      filtered = filtered.filter(product =>
+        product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.brand.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    // Filtrer par catégorie
+    if (selectedCategory !== 'all') {
+      filtered = filtered.filter(product => product.category === selectedCategory);
+    }
+
+    setFilteredProducts(filtered);
+  };
+
+  // Effet pour déclencher le filtrage
+  useEffect(() => {
+    filterProducts();
+  }, [searchTerm, selectedCategory, products]);
+
+  // Gestionnaires d'événements
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  };
+
+  const clearFilters = () => {
+    setSearchTerm('');
+    setSelectedCategory('all');
   };
 
   if (loading) {
@@ -74,48 +123,95 @@ const Produits = () => {
         <p>Découvrez notre sélection de produits de qualité</p>
       </div>
 
-      <div className="products-grid">
-        {products.map(product => (
-          <div 
-            key={product.id} 
-            className="product-card"
-            onClick={() => handleProductClick(product)}
+      <div className="filters-section">
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Rechercher un produit..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="search-input"
+          />
+          <span className="search-icon">🔍</span>
+        </div>
+        
+        <div className="category-filter">
+          <select
+            value={selectedCategory}
+            onChange={handleCategoryChange}
+            className="category-select"
           >
-            <div className="product-image">
-              <img src={product.thumbnail} alt={product.title} />
-              <div className="product-badge">
-                -{Math.round(product.discountPercentage)}%
-              </div>
-            </div>
-            <div className="product-info">
-              <h3 className="product-title">{product.title}</h3>
-              <p className="product-brand">{product.brand}</p>
-              <p className="product-description">
-                {product.description.length > 80 
-                  ? product.description.substring(0, 80) + '...' 
-                  : product.description}
-              </p>
-              <div className="product-rating">
-                <div className="stars">
-                  {[...Array(5)].map((_, index) => (
-                    <span 
-                      key={index} 
-                      className={index < Math.floor(product.rating) ? 'star filled' : 'star'}
-                    >
-                      ★
-                    </span>
-                  ))}
-                </div>
-                <span className="rating-text">({product.rating})</span>
-              </div>
-              <div className="product-price">
-                <span className="current-price">{formatPrice(product.price)}</span>
-                <span className="stock-info">{product.stock} en stock</span>
-              </div>
-            </div>
-          </div>
-        ))}
+            <option value="all">Toutes les catégories</option>
+            {categories.map(category => (
+              <option key={category} value={category}>
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="filter-info">
+          <span className="results-count">
+            {filteredProducts.length} produit{filteredProducts.length > 1 ? 's' : ''} trouvé{filteredProducts.length > 1 ? 's' : ''}
+          </span>
+          {(searchTerm || selectedCategory !== 'all') && (
+            <button onClick={clearFilters} className="clear-filters-btn">
+              Effacer les filtres
+            </button>
+          )}
+        </div>
       </div>
+
+      {filteredProducts.length === 0 ? (
+        <div className="no-products">
+          <div className="no-products-icon">🔍</div>
+          <h3>Aucun produit trouvé</h3>
+          <p>Essayez de modifier vos critères de recherche ou de filtrage.</p>
+        </div>
+      ) : (
+        <div className="products-grid">
+          {filteredProducts.map(product => (
+            <div 
+              key={product.id} 
+              className="product-card"
+              onClick={() => handleProductClick(product)}
+            >
+              <div className="product-image">
+                <img src={product.thumbnail} alt={product.title} />
+                <div className="product-badge">
+                  -{Math.round(product.discountPercentage)}%
+                </div>
+              </div>
+              <div className="product-info">
+                <h3 className="product-title">{product.title}</h3>
+                <p className="product-brand">{product.brand}</p>
+                <p className="product-description">
+                  {product.description.length > 80 
+                    ? product.description.substring(0, 80) + '...' 
+                    : product.description}
+                </p>
+                <div className="product-rating">
+                  <div className="stars">
+                    {[...Array(5)].map((_, index) => (
+                      <span 
+                        key={index} 
+                        className={index < Math.floor(product.rating) ? 'star filled' : 'star'}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </div>
+                  <span className="rating-text">({product.rating})</span>
+                </div>
+                <div className="product-price">
+                  <span className="current-price">{formatPrice(product.price)}</span>
+                  <span className="stock-info">{product.stock} en stock</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
       {selectedProduct && (
         <div className="modal-overlay" onClick={closeModal}>
