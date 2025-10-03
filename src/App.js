@@ -5,6 +5,7 @@ import Accueil from './components/Accueil';
 import Produits from './components/Produits';
 import Citations from './components/Citations';
 import Articles from './components/Articles';
+import Footer from './components/Footer';
 
 function App() {
   const [activeTab, setActiveTab] = useState('accueil');
@@ -30,6 +31,7 @@ function App() {
       <main className="main-content">
         {renderContent()}
       </main>
+      <Footer />
     </div>
   );
 }
