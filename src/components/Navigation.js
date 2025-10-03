@@ -1,12 +1,13 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import '../styles/Navigation.css';
 
-const Navigation = ({ activeTab, setActiveTab }) => {
+const Navigation = () => {
   const tabs = [
-    { id: 'accueil', label: 'Accueil' },
-    { id: 'produits', label: 'Produits' },
-    { id: 'citations', label: 'Citations' },
-    { id: 'articles', label: 'Articles' }
+    { id: 'accueil', path: '/accueil', label: 'Accueil' },
+    { id: 'produits', path: '/produits', label: 'Produits' },
+    { id: 'citations', path: '/citations', label: 'Citations' },
+    { id: 'articles', path: '/articles', label: 'Articles' }
   ];
 
   return (
@@ -16,12 +17,12 @@ const Navigation = ({ activeTab, setActiveTab }) => {
         <ul className="nav-tabs">
           {tabs.map(tab => (
             <li key={tab.id}>
-              <button
-                className={`nav-tab ${activeTab === tab.id ? 'active' : ''}`}
-                onClick={() => setActiveTab(tab.id)}
+              <NavLink
+                to={tab.path}
+                className={({ isActive }) => `nav-tab ${isActive ? 'active' : ''}`}
               >
                 {tab.label}
-              </button>
+              </NavLink>
             </li>
           ))}
         </ul>

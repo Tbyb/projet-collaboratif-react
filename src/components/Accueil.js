@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Accueil.css';
 
-const Accueil = ({ setActiveTab }) => {
+const Accueil = () => {
+  const navigate = useNavigate();
   return (
     <div className="accueil">
       <div className="hero-section">
@@ -12,8 +14,8 @@ const Accueil = ({ setActiveTab }) => {
             produits innovants, citations inspirantes et articles captivants.
           </p>
           <div className="hero-buttons">
-            <button className="btn-primary" onClick={() => setActiveTab && setActiveTab('produits')}>Explorer les Produits</button>
-            <button className="btn-secondary" onClick={() => setActiveTab && setActiveTab('articles')}>Lire les Articles</button>
+            <button className="btn-primary" onClick={() => navigate('/produits')}>Explorer les Produits</button>
+            <button className="btn-secondary" onClick={() => navigate('/articles')}>Lire les Articles</button>
           </div>
         </div>
       </div>

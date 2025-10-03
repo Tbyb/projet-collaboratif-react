@@ -47,6 +47,8 @@
   border-radius: 5px;
   transition: all 0.3s ease;
   font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .nav-tab:hover {
