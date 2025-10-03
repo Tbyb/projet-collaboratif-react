@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import '../styles/Articles.css';
+import '../styles/articles.css';
 
 function Articles() {
   const [articles, setArticles] = useState([]);
