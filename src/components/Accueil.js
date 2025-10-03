@@ -1,19 +1,19 @@
 import React from 'react';
 import '../styles/Accueil.css';
 
-const Accueil = () => {
+const Accueil = ({ setActiveTab }) => {
   return (
     <div className="accueil">
       <div className="hero-section">
         <div className="hero-content">
-          <h1 className="hero-title">Bienvenue sur notre Site Collaboratif</h1>
+          <h1 className="hero-title">Bienvenue sur notre Blog</h1>
           <p className="hero-description">
             Découvrez une expérience unique avec nos différentes sections : 
             produits innovants, citations inspirantes et articles captivants.
           </p>
           <div className="hero-buttons">
-            <button className="btn-primary">Explorer les Produits</button>
-            <button className="btn-secondary">Lire les Articles</button>
+            <button className="btn-primary" onClick={() => setActiveTab && setActiveTab('produits')}>Explorer les Produits</button>
+            <button className="btn-secondary" onClick={() => setActiveTab && setActiveTab('articles')}>Lire les Articles</button>
           </div>
         </div>
         <div className="hero-image">

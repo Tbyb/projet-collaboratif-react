@@ -12,7 +12,7 @@ function App() {
   const renderContent = () => {
     switch (activeTab) {
       case 'accueil':
-        return <Accueil />;
+        return <Accueil setActiveTab={setActiveTab} />;
       case 'produits':
         return <Produits />;
       case 'citations':
@@ -20,7 +20,7 @@ function App() {
       case 'articles':
         return <Articles />;
       default:
-        return <Accueil />;
+        return <Accueil setActiveTab={setActiveTab} />;
     }
   };
 

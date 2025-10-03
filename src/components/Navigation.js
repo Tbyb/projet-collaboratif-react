@@ -12,7 +12,7 @@ const Navigation = ({ activeTab, setActiveTab }) => {
   return (
     <nav className="navigation">
       <div className="nav-container">
-        <h1 className="site-title">Mon Site Collaboratif</h1>
+        <h1 className="site-title">Blog</h1>
         <ul className="nav-tabs">
           {tabs.map(tab => (
             <li key={tab.id}>
