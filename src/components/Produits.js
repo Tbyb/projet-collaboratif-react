@@ -26,8 +26,11 @@ const Produits = () => {
       setProducts(data.products);
       setFilteredProducts(data.products);
       
-      // Extraire les catégories uniques
-      const uniqueCategories = [...new Set(data.products.map(product => product.category))];
+      // Extraire les catégories uniques (filtrer les valeurs undefined/null)
+      const uniqueCategories = [...new Set(data.products
+        .map(product => product.category)
+        .filter(category => category && category.trim() !== '')
+      )];
       setCategories(uniqueCategories);
     } catch (err) {
       setError(err.message);
@@ -57,11 +60,15 @@ const Produits = () => {
 
     // Filtrer par recherche
     if (searchTerm) {
-      filtered = filtered.filter(product =>
-        product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.brand.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      filtered = filtered.filter(product => {
+        const title = product.title || '';
+        const description = product.description || '';
+        const brand = product.brand || '';
+        
+        return title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+               description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+               brand.toLowerCase().includes(searchTerm.toLowerCase());
+      });
     }
 
     // Filtrer par catégorie
@@ -183,12 +190,12 @@ const Produits = () => {
                 </div>
               </div>
               <div className="product-info">
-                <h3 className="product-title">{product.title}</h3>
-                <p className="product-brand">{product.brand}</p>
+                <h3 className="product-title">{product.title || 'Produit sans nom'}</h3>
+                <p className="product-brand">{product.brand || 'Marque inconnue'}</p>
                 <p className="product-description">
-                  {product.description.length > 80 
+                  {product.description && product.description.length > 80 
                     ? product.description.substring(0, 80) + '...' 
-                    : product.description}
+                    : product.description || 'Aucune description disponible'}
                 </p>
                 <div className="product-rating">
                   <div className="stars">
@@ -227,9 +234,9 @@ const Produits = () => {
                 </div>
               </div>
               <div className="modal-info">
-                <h2>{selectedProduct.title}</h2>
-                <p className="modal-brand">{selectedProduct.brand}</p>
-                <p className="modal-category">Catégorie: {selectedProduct.category}</p>
+                <h2>{selectedProduct.title || 'Produit sans nom'}</h2>
+                <p className="modal-brand">{selectedProduct.brand || 'Marque inconnue'}</p>
+                <p className="modal-category">Catégorie: {selectedProduct.category || 'Non classé'}</p>
                 <div className="modal-rating">
                   <div className="stars">
                     {[...Array(5)].map((_, index) => (
@@ -243,7 +250,7 @@ const Produits = () => {
                   </div>
                   <span>({selectedProduct.rating})</span>
                 </div>
-                <p className="modal-description">{selectedProduct.description}</p>
+                <p className="modal-description">{selectedProduct.description || 'Aucune description disponible'}</p>
                 <div className="modal-price">
                   <span className="price">{formatPrice(selectedProduct.price)}</span>
                   <span className="discount">-{Math.round(selectedProduct.discountPercentage)}%</span>
