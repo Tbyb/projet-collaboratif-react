@@ -5,7 +5,7 @@ Un site web moderne développé en React avec 4 sections interactives utilisant 
 ## 📋 Description
 
 Projet collaboratif étudiant développé par une équipe de 3 personnes :
-- **Accueil & Produits** : Interface d'accueil et catalogue de produits avec modal
+- **Accueil & Produits** : Interface d'accueil et catalogue de produits avec modal (Thiané)
 - **Citations** : Collection de citations inspirantes (Ndiawo)
 - **Articles** : Articles intéressants (Alpha)
 
@@ -59,9 +59,9 @@ src/
 
 ## 👥 Équipe
 
-- **Boyet** - Accueil & Produits ✅
-- **Ndiawo** - Citations 🚧
-- **Alpha** - Articles 🚧
+- **Thiané** - Accueil & Produits ✅
+- **Ndiawo** - Citations ✅
+- **Alpha** - Articles ✅
 
 ## 🚀 Scripts Disponibles
 
